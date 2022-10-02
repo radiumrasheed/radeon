@@ -1,25 +1,23 @@
 package main
 
 import (
-	"fmt"
+	"golang.org/x/tour/wc"
 	"strings"
 )
 
+func WordCount(s string) (m map[string]int) {
+	m = make(map[string]int)
+
+	for _, word := range strings.Fields(s) {
+		if _, ok := m[word]; ok {
+			m[word] = m[word] + 1
+		} else {
+			m[word] = 1
+		}
+	}
+	return
+}
+
 func main() {
-	// Create a tic-tac-toe board.
-	board := [][]string {
-		[]string{" ", " ", " "},
-		[]string{" ", " ", " "},
-		[]string{" ", " ", " "},
-	}
-
-	board[0][0] = "X"
-	board[2][0] = "0"
-	board[1][1] = "X"
-	board[2][1] = "0"
-	board[2][2] = "X"
-
-	for i := 0; i < len(board); i++ {
-		fmt.Println(strings.Join(board[i], ""))
-	}
+	wc.Test(WordCount)
 }
